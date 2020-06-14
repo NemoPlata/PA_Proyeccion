@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+  <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+  <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+  <style type="text/css">
+
+      html,
+      body,
+      #container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    
+</style>
+</head>
+<body>
+    
+  <div id="container"></div>
+    
+  
+  <script>
+
+      anychart.onDocumentReady(function () {
+        // create data set on our data
+        var chartData = {
+          title: 'Niveles de depresión y autoestima',
+          header: ['#', 'Baja', 'Media', 'Alta'],
+          rows: [
+            ['Primer Año', 17.65, 33.3, 49.05],
+            ['Segundo Año', 33.33, 37.25, 29.42],
+            ['Tercer Año', 25.5, 49, 25.5]
+          ]
+        };
+
+        // create column chart
+        var chart = anychart.column();
+
+        // set chart data
+        chart.data(chartData);
+
+        // turn on chart animation
+        chart.animation(true);
+
+        chart.yAxis().labels().format('%{%Value}{groupsSeparator: }');
+
+        // set titles for Y-axis
+        chart.yAxis().title('Porcentaje');
+
+        chart
+          .labels()
+          .enabled(true)
+          .position('center-top')
+          .anchor('center-bottom')
+          .format('%{%Value}{groupsSeparator: }');
+        chart.hovered().labels(false);
+
+        // turn on legend and tune it
+        chart.legend().enabled(true).fontSize(13).padding([0, 0, 20, 0]);
+
+        // interactivity settings and tooltip position
+        chart.interactivity().hoverMode('single');
+
+        chart
+          .tooltip()
+          .positionMode('point')
+          .position('center-top')
+          .anchor('center-bottom')
+          .offsetX(0)
+          .offsetY(5)
+          .titleFormat('{%X}')
+          .format('{%SeriesName} : %{%Value}{groupsSeparator: }');
+
+        // set container id for the chart
+        chart.container('container');
+
+        // initiate chart drawing
+        chart.draw();
+      });
+    
+</script>
+</body>
+</html>
+                
+</body>
+</html>
